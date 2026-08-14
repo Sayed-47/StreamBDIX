@@ -16,7 +16,8 @@ const SOURCES = {
     roarzone: { name: 'RoarZone', urls: ['https://play.roarzone.info'] },
     ftpbd: { name: 'FTPBD', urls: ['http://media.ftpbd.net:8096'] },
     circleftp: { name: 'CircleFTP', urls: ['http://new.circleftp.net'] },
-    iccftp: { name: 'ICC FTP', urls: ['http://10.16.100.244'] }
+    iccftp: { name: 'ICC FTP', urls: ['http://10.16.100.244'] },
+    cityplex: { name: 'CityPlex', urls: ['https://cityplex.live'] }
 };
 
 const dataDir = () => path.join(process.env.HOME || process.env.USERPROFILE, '.streambdix');
