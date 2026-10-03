@@ -4,7 +4,7 @@
   "description": "Stream from BDIX sites on Stremio",
   "main": "index.js",
   "bin": {
-    "streamiobdix": "./index.js"
+    "streamiobdix": "index.js"
   },
   "files": [
     "addon.json",
