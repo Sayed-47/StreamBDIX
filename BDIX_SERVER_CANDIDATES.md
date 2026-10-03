@@ -45,7 +45,7 @@ The first pass requested URL roots with a five-second timeout. The second pass c
 | DhakaFlix server 7 | Search returned Avatar files | Video HEAD returned 200 | Added to DhakaFlix source |
 | CityPlex | API search returned Avatar | Video request returned 206 | Added as a source |
 | CTG Movies | Search returned movies and TV episodes | Movie and episode HEAD returned 200 | Added as a source |
-| AmaderFTP | Search was intermittent and slow | One current home-page file returned 200; Avatar returned 404 | Not added |
+| AmaderFTP | Direct movie page opened using Cinemeta's movie ID | Current movie file returned 200; broken files are filtered | Added as a movie source |
 | SunPlex | Search and movie page loaded | Media host timed out | Not added |
 | Elaach | Search and movie page loaded | Media host timed out, including a longer retry | Not added |
 | MegaFlix | Search and movie page loaded | Media host timed out, including a longer retry | Not added |

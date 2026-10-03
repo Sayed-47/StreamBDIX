@@ -1,7 +1,7 @@
 # Changelog
 
 ## v1.6.0
-- Added CityPlex and CTG Movies sources after checking search and playable media URLs from this PC.
+- Added CityPlex, CTG Movies, and AmaderFTP sources after checking playable media URLs from this PC.
 - Added DhakaFlix server 7 for movies.
 
 ## v1.4.0

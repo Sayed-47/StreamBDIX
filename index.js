@@ -18,7 +18,8 @@ const SOURCES = {
     circleftp: { name: 'CircleFTP', urls: ['http://new.circleftp.net'] },
     iccftp: { name: 'ICC FTP', urls: ['http://10.16.100.244'] },
     cityplex: { name: 'CityPlex', urls: ['https://cityplex.live/api/search?search=Avatar'] },
-    ctgmovies: { name: 'CTG Movies', urls: ['https://ctgmovies.com/search?q=Avatar'] }
+    ctgmovies: { name: 'CTG Movies', urls: ['https://ctgmovies.com/search?q=Avatar'] },
+    amaderftp: { name: 'AmaderFTP', urls: ['http://amaderftp.net/'] }
 };
 
 const dataDir = () => path.join(process.env.HOME || process.env.USERPROFILE, '.streambdix');

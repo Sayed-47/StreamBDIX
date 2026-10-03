@@ -14,6 +14,7 @@ const allSources = {
     iccftp: require('./sources/iccftp'),
     cityplex: require('./sources/cityplex'),
     ctgmovies: require('./sources/ctgmovies'),
+    amaderftp: require('./sources/amaderftp'),
 };
 
 function getEnabledSources() {
