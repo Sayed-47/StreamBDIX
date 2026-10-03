@@ -10,7 +10,6 @@ const axiosConfig = {
         'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36'
     }
 };
-
 async function search(query) {
     try {
         const response = await axios.get(`${API_URL}/search`, {
@@ -92,4 +91,3 @@ module.exports = {
         return await getSeriesStream(match.id, season, episode);
     }
 };
-
