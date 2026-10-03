@@ -14,7 +14,7 @@
 ## ⚡ Quick Start
 
 ```
-npx streambdix
+npx streamiobdix
 ```
 
 > Requires **[Stremio](https://www.stremio.com/downloads)**  
@@ -53,7 +53,7 @@ Access your addon from anywhere using Cloudflare Tunnel.
 ## 🛠️ Troubleshooting
 
 **No streams found?**  
-• Make sure the addon is running (`npx streambdix`)  
+• Make sure the addon is running (`npx streamiobdix`)
 • Check if the BDIX sites are reachable  
 • The content might not be available
 

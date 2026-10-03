@@ -1,10 +1,21 @@
 {
-  "name": "streambdix",
+  "name": "streamiobdix",
   "version": "1.4.0",
   "description": "Stream from BDIX sites on Stremio",
   "main": "index.js",
   "bin": {
-    "streambdix": "./index.js"
+    "streamiobdix": "./index.js"
+  },
+  "files": [
+    "addon.json",
+    "index.js",
+    "server.js",
+    "public/",
+    "sources/"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Sayed-47/StreamBDIX.git"
   },
   "scripts": {
     "start": "node index.js"
