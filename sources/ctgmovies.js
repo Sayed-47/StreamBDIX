@@ -61,13 +61,14 @@ module.exports = {
     async getStreams(type, meta, season, episode) {
         if (!meta?.name) return [];
         try {
+            const metaYear = Number.parseInt(meta.year, 10) || 0;
             const search = await axios.get(BASE + '/search', {
                 params: { q: meta.name },
                 timeout: TIMEOUT
             });
             const candidates = searchCards(search.data, type).filter(card =>
                 normalize(card.title) === normalize(meta.name) &&
-                (!meta.year || !card.year || Math.abs(card.year - meta.year) <= 1)
+                (!metaYear || !card.year || Math.abs(card.year - metaYear) <= 1)
             );
             const results = await Promise.all(candidates.slice(0, 3).map(async card => {
                 const page = await axios.get(BASE + card.path, { timeout: TIMEOUT });
