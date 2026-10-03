@@ -6,9 +6,9 @@ Sources: [BDIX Server Monitor list](https://github.com/fam007e/bdix-server-monit
 
 | Candidate | URL | Source | HTTP check | Notes |
 | --- | --- | --- | --- | --- |
-| SunPlex | https://sunplex.net/ | M, D | 200 | Media site loaded; search and playback untested. |
+| SunPlex | https://sunplex.net/ | M, D | 200 | Search and title pages worked; `stream.sunplex.net` media timed out. |
 | FastPlex | https://fastplex.net/ | M | 200 | Directory linking to ICC FTP, DhakaFlix, and CityPlex; not a separate media source. |
-| CTG Movies | https://ctgmovies.com/ | M, D, N | 200 | `/search?q=Avatar` returned matching movie and TV links; playback untested. |
+| CTG Movies | https://ctgmovies.com/ | M, D, N | 200 | Search, movie and episode pages, and media HEAD checks worked; added as a source. |
 | MyMovieBazar | http://mymoviebazar.net/ | M | 200 after HTTPS redirect | Web app loaded; media extraction untested. |
 | Nagordola CDN | https://cdn.nagordola.com.bd/ | P | 403 at root | PotFlix references this CDN; its root does not expose an index. |
 | SunPlex storage | https://storage.sunplex.net/ | D | Timed out | Listed as a media storage endpoint. |
@@ -36,4 +36,19 @@ Sources: [BDIX Server Monitor list](https://github.com/fam007e/bdix-server-monit
 
 Avoid using these as sources without further validation: `pollyflix.com` redirected to a parked domain, `midiplex.net` redirected to a domain sale page, `dnetdrive.com` and `www.moviemela.live` loaded generic domain pages, and `www.nagordola.com.bd` showed maintenance. The GitHub lists are directories, not proof that every server still works.
 
-Most checks requested only each URL's root with a five-second timeout. CTG Movies also had one search page check. The checks did not authenticate, inspect media links, or stream a file.
+The first pass requested URL roots with a five-second timeout. The second pass checked searches and media URLs for the most promising sites. It did not download full media files.
+
+## Media checks on this PC
+
+| Site | Search and page | Media URL | Result |
+| --- | --- | --- | --- |
+| DhakaFlix server 7 | Search returned Avatar files | Video HEAD returned 200 | Added to DhakaFlix source |
+| CityPlex | API search returned Avatar | Video request returned 206 | Added as a source |
+| CTG Movies | Search returned movies and TV episodes | Movie and episode HEAD returned 200 | Added as a source |
+| AmaderFTP | Search was intermittent and slow | One current home-page file returned 200; Avatar returned 404 | Not added |
+| SunPlex | Search and movie page loaded | Media host timed out | Not added |
+| Elaach | Search and movie page loaded | Media host timed out, including a longer retry | Not added |
+| MegaFlix | Search and movie page loaded | Media host timed out, including a longer retry | Not added |
+| Khulnaplex | Search and watch page loaded | Media host timed out | Not added |
+
+The broader [monitor list](https://github.com/fam007e/bdix-server-monitor/blob/main/data/server.json) contained 580 distinct HTTP URLs. From this PC, 138 answered with an HTTP status below 400. Many were ISP websites, link directories, parked domains, or pages without an accessible video host; an HTTP 200 alone was not treated as a working Stremio source.

@@ -12,11 +12,13 @@ const PORT = process.env.PORT || 7001;
 
 const SOURCES = {
     dflix: { name: 'Dflix', urls: ['https://movies.discoveryftp.net', 'https://cdn1.discoveryftp.net', 'https://cdn2.discoveryftp.net'] },
-    dhakaflix: { name: 'DhakaFlix', urls: ['http://172.16.50.14/DHAKA-FLIX-14/', 'http://172.16.50.12/DHAKA-FLIX-12/', 'http://172.16.50.12'] },
+    dhakaflix: { name: 'DhakaFlix', urls: ['http://172.16.50.14/DHAKA-FLIX-14/', 'http://172.16.50.12/DHAKA-FLIX-12/', 'http://172.16.50.7/DHAKA-FLIX-7/'] },
     roarzone: { name: 'RoarZone', urls: ['https://play.roarzone.info'] },
     ftpbd: { name: 'FTPBD', urls: ['http://media.ftpbd.net:8096'] },
     circleftp: { name: 'CircleFTP', urls: ['http://new.circleftp.net'] },
-    iccftp: { name: 'ICC FTP', urls: ['http://10.16.100.244'] }
+    iccftp: { name: 'ICC FTP', urls: ['http://10.16.100.244'] },
+    cityplex: { name: 'CityPlex', urls: ['https://cityplex.live/api/search?search=Avatar'] },
+    ctgmovies: { name: 'CTG Movies', urls: ['https://ctgmovies.com/search?q=Avatar'] }
 };
 
 const dataDir = () => path.join(process.env.HOME || process.env.USERPROFILE, '.streambdix');

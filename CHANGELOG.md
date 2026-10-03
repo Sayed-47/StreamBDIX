@@ -1,5 +1,9 @@
 # Changelog
 
+## v1.6.0
+- Added CityPlex and CTG Movies sources after checking search and playable media URLs from this PC.
+- Added DhakaFlix server 7 for movies.
+
 ## v1.4.0
 - **New sources**: RoarZone, FTPBD, CircleFTP, ICC FTP
 - **Web UI**: Configure sources at `http://127.0.0.1:7001`

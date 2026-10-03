@@ -2,8 +2,11 @@
 const { extractQuality, titlesMatch, axios } = require('./utils');
 const SOURCE_NAME = 'DHAKAFLIX';
 const SERVERS = {
-    movies: { url: 'http://172.16.50.14', name: 'DHAKA-FLIX-14', types: ['movie'] },
-    series: { url: 'http://172.16.50.12', name: 'DHAKA-FLIX-12', types: ['series'] }
+    movies: [
+        { url: 'http://172.16.50.14', name: 'DHAKA-FLIX-14' },
+        { url: 'http://172.16.50.7', name: 'DHAKA-FLIX-7' }
+    ],
+    series: [{ url: 'http://172.16.50.12', name: 'DHAKA-FLIX-12' }]
 };
 function getNameFromPath(href) {
     const decoded = decodeURIComponent(href);
@@ -51,7 +54,7 @@ async function searchServer(query, server) {
             }));
     } catch { return null; }
 }
-function findMovieStreams(results, metaName, metaYear) {
+function findMovieStreams(results, metaName, metaYear, serverName) {
     const streams = [];
     const seen = new Set();
     for (const result of results) {
@@ -61,11 +64,11 @@ function findMovieStreams(results, metaName, metaYear) {
         if (metaYear && fileYear && Math.abs(metaYear - fileYear) > 1) continue;
         if (seen.has(result.fullUrl)) continue;
         seen.add(result.fullUrl);
-        streams.push({ name: SOURCE_NAME, title: extractQuality(result.name), url: result.fullUrl });
+        streams.push({ name: serverName, title: extractQuality(result.name), url: result.fullUrl });
     }
     return streams;
 }
-function findSeriesStreams(results, metaName, targetSeason, targetEpisode) {
+function findSeriesStreams(results, metaName, targetSeason, targetEpisode, serverName) {
     const streams = [];
     const seen = new Set();
     for (const result of results) {
@@ -77,7 +80,7 @@ function findSeriesStreams(results, metaName, targetSeason, targetEpisode) {
         if (seInfo.season !== targetSeason || seInfo.episode !== targetEpisode) continue;
         if (seen.has(result.fullUrl)) continue;
         seen.add(result.fullUrl);
-        streams.push({ name: SOURCE_NAME, title: extractQuality(result.name), url: result.fullUrl });
+        streams.push({ name: serverName, title: extractQuality(result.name), url: result.fullUrl });
     }
     return streams;
 }
@@ -94,16 +97,19 @@ module.exports = {
     name: SOURCE_NAME,
     types: ['movie', 'series'],
     async getStreams(type, meta, season, episode) {
-        const server = type === 'movie' ? SERVERS.movies : SERVERS.series;
+        const servers = type === 'movie' ? SERVERS.movies : SERVERS.series;
         const searchTerms = getSearchTerms(meta.name);
-        for (const term of searchTerms) {
-            const results = await searchServer(term, server);
-            if (results === null) return [];
-            if (results.length > 0) {
-                if (type === 'movie') return findMovieStreams(results, meta.name, meta.year);
-                else return findSeriesStreams(results, meta.name, season, episode);
+        const allStreams = await Promise.all(servers.map(async server => {
+            for (const term of searchTerms) {
+                const results = await searchServer(term, server);
+                if (results === null) break;
+                const streams = type === 'movie'
+                    ? findMovieStreams(results, meta.name, meta.year, server.name)
+                    : findSeriesStreams(results, meta.name, season, episode, server.name);
+                if (streams.length > 0) return streams;
             }
-        }
-        return [];
+            return [];
+        }));
+        return allStreams.flat();
     }
 };

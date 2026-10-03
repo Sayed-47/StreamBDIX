@@ -30,6 +30,8 @@ npx streamiobdix
 - [FTPBD](https://ftpbd.net)
 - [CircleFTP](http://new.circleftp.net)
 - [ICC FTP](http://10.16.100.244)
+- [CityPlex](https://cityplex.live/)
+- [CTG Movies](https://ctgmovies.com/)
 
 ---
 

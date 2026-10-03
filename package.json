@@ -1,6 +1,6 @@
 {
   "name": "streamiobdix",
-  "version": "1.4.0",
+  "version": "1.6.0",
   "description": "Stream from BDIX sites on Stremio",
   "main": "index.js",
   "bin": {

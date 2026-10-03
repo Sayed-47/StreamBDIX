@@ -12,6 +12,8 @@ const allSources = {
     ftpbd: require('./sources/ftpbd'),
     circleftp: require('./sources/circleftp'),
     iccftp: require('./sources/iccftp'),
+    cityplex: require('./sources/cityplex'),
+    ctgmovies: require('./sources/ctgmovies'),
 };
 
 function getEnabledSources() {
